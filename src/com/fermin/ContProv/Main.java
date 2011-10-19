@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.PhoneLookup;
+import android.util.Log;
 
 public class Main extends Activity {
     /** Called when the activity is first created. */
@@ -14,6 +16,9 @@ public class Main extends Activity {
        
         Cursor people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         while (people.moveToNext()) {
+			int nameIndex = people.getColumnIndex(PhoneLookup.DISPLAY_NAME);
+			String name = people.getString(nameIndex);
+			Log.d("CONTACTS", name);
 			
 		}
     }
